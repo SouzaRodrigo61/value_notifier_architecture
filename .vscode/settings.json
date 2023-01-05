@@ -1,0 +1,17 @@
+{
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "material-icon-theme.folders.associations": {
+    "di": "connection",
+    "dto": "interface",
+    "usecase": "tasks",
+    "usecases": "tasks",
+    "repositories": "content",
+    "infra": "project",
+    "domain": "context",
+    "state": "update",
+    "store": "hook",
+    "notifier": "event"
+  }
+}
