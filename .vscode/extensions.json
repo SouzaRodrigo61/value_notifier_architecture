@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "Dart-Code.flutter",
+    "hzgood.dart-data-class-generator",
+    "usernamehw.errorlens",
+    "flutterando.flutter-coverage",
+    "PKief.material-icon-theme",
+    "pflannery.vscode-versionlens",
+    "ryanluker.vscode-coverage-gutters"
+  ]
+}
