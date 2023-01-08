@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
+import 'package:value_notifier_architecture/design/theme/media_query.dart';
 
 import '../../../../core/di/core.dart';
 import '../../../../core/layout/layout_page_scope.dart';
@@ -48,8 +49,7 @@ class _MyHomePageState extends BaseState<MyHomePage> {
         elevation: 0,
         title: HomeTitleWidget(store: _store),
       ),
-      body: ValueNotifierWidget<HomeState, SuccessHomeState, ErrorHomeState,
-          LoadingHomeState>(
+      body: ValueNotifierWidget(
         store: _store,
         success: HomeSuccessFlow(),
         error: HomeErrorFlow(),
@@ -87,7 +87,10 @@ class HomeSuccessFlow extends ValueNotifierDelegateWidget<SuccessHomeState> {
 
   @override
   Widget build(BuildContext context) {
+    final size = sized(context);
     return Container(
+      width: size.width,
+      height: size.height,
       color: Colors.amber,
       child: Text(datasource.text),
     );
@@ -100,7 +103,10 @@ class HomeErrorFlow extends ValueNotifierDelegateWidget<ErrorHomeState> {
   @override
   Widget build(BuildContext context) {
     return ErrorPage(
-      config: ErrorConfig(),
+      config: ErrorConfig(
+        title: "Apresentação do erro",
+        message: datasource.error,
+      ),
       actionHandler: () {},
     );
   }
