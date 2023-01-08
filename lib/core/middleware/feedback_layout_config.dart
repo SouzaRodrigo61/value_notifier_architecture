@@ -16,15 +16,16 @@ class FeedbackLayoutConfig {
   FeedbackType type;
   bool shouldPop;
 
-  FeedbackLayoutConfig(
-      {this.message,
-      this.title,
-      this.primaryButton,
-      this.secondaryButton,
-      this.flatButton,
-      this.type = FeedbackType.error,
-      this.actionVisible = false,
-      this.shouldPop = false});
+  FeedbackLayoutConfig({
+    this.message,
+    this.title,
+    this.primaryButton,
+    this.secondaryButton,
+    this.flatButton,
+    this.type = FeedbackType.error,
+    this.actionVisible = false,
+    this.shouldPop = false,
+  });
 }
 
 class Button {
@@ -50,22 +51,22 @@ extension FeedbackTypeExtension on FeedbackType {
       case FeedbackType.success:
         return SvgPicture.asset(
           getImageAssetPath("ic_fallback_success.svg"),
-          width: 150,
+          width: 100,
         );
       case FeedbackType.waiting:
         return SvgPicture.asset(
           getImageAssetPath("ic_fallback_waiting.svg"),
-          width: 150,
+          width: 100,
         );
       case FeedbackType.warning:
         return SvgPicture.asset(
           getImageAssetPath("ic_fallback_alert.svg"),
-          width: 150,
+          width: 100,
         );
       case FeedbackType.error:
         return SvgPicture.asset(
           getImageAssetPath("ic_fallback_error.svg"),
-          width: 150,
+          width: 100,
         );
     }
   }

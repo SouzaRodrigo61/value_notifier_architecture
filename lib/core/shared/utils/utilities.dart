@@ -68,7 +68,7 @@ extension StringExtension on String {
     return result;
   }
 
-  String get withoutDiacriticalMarks => this.splitMapJoin('',
+  String get withoutDiacriticalMarks => splitMapJoin('',
       onNonMatch: (char) => char.isNotEmpty && diacritics.contains(char)
           ? nonDiacritics[diacritics.indexOf(char)]
           : char);
@@ -85,7 +85,7 @@ double? convertStringCurrencyInDouble(String? value) {
 extension HexColor on Color {
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();
-    if (hexString.length < 6) return Color.fromARGB(0, 0, 0, 0);
+    if (hexString.length < 6) return const Color.fromARGB(0, 0, 0, 0);
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
@@ -99,6 +99,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
   static const _locale = "pt_br";
   late TextEditingValue newValuex;
 
+  @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (newValue.selection.baseOffset == 0) return newValue;
@@ -110,7 +111,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
     return newValue.copyWith(
         text: newText,
-        selection: new TextSelection.collapsed(offset: newText.length));
+        selection: TextSelection.collapsed(offset: newText.length));
   }
 
   String getNewValue() {

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 
 import '../../../../core/di/core.dart';
-import '../../../../core/layout/layout_page_feedback.dart';
 import '../../../../core/layout/layout_page_scope.dart';
-import '../../../../core/middleware/feedback_layout_config.dart';
+import '../../../../core/shared/notifier/valuenotifier_delegate.dart';
 import '../../../../core/shared/view/base_page.dart';
+import '../../../../design/views/error_page.dart';
+import '../../../../core/shared/notifier/valuenotifier_widget.dart';
 import '../../di/home_module.dart';
 import '../contract/home_view_contract.dart';
 import '../controller/state/home_state.dart';
@@ -40,56 +41,78 @@ class _MyHomePageState extends BaseState<MyHomePage> {
     super.dispose();
   }
 
-  _closeApp() {}
+  @override
+  Widget build(BuildContext context) {
+    return LayoutPageScope(
+      appBar: AppBar(
+        elevation: 0,
+        title: HomeTitleWidget(store: _store),
+      ),
+      body: ValueNotifierWidget<HomeState, SuccessHomeState, ErrorHomeState,
+          LoadingHomeState>(
+        store: _store,
+        success: HomeSuccessFlow(),
+        error: HomeErrorFlow(),
+        loading: HomeLoadingFlow(),
+        emptyState: HomeLoadingFlow(),
+      ),
+    );
+  }
+}
+
+class HomeTitleWidget extends StatelessWidget {
+  const HomeTitleWidget({
+    Key? key,
+    required HomeStore store,
+  })  : _store = store,
+        super(key: key);
+
+  final HomeStore _store;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: _store,
       builder: (context, HomeState state, child) {
-        return LayoutPageScope(
-          appBar: homeAppBar(state: state),
-          body: LayoutBuilder(
-            builder: (context, constraints) {
-              switch (state.runtimeType) {
-                case LoadingHomeState:
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                case SuccessHomeState:
-                  final value = state as SuccessHomeState;
-                  return Center(
-                    child: Text(value.text),
-                  );
-                case ErrorHomeState:
-                  return LayoutPageFeedback(
-                    config: FeedbackLayoutConfig(
-                      title: "Erro na Home",
-                      message: "Erro no fluxo do estado da home",
-                      primaryButton: Button(
-                        text: "Fechar o app",
-                        action: _closeApp,
-                      ),
-                      shouldPop: true,
-                      type: FeedbackType.error,
-                    ),
-                    onPop: () {},
-                  );
-                default:
-                  return const Text("Generic Page");
-              }
-            },
-          ),
-        );
+        return state is ErrorHomeState
+            ? const Text("Error")
+            : Text("welcome-text".i18n());
       },
     );
   }
+}
 
-  AppBar? homeAppBar({required HomeState state}) {
-    return state is ErrorHomeState
-        ? null
-        : AppBar(
-            title: Text("welcome-text".i18n()),
-          );
+class HomeSuccessFlow extends ValueNotifierDelegateWidget<SuccessHomeState> {
+  HomeSuccessFlow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.amber,
+      child: Text(datasource.text),
+    );
+  }
+}
+
+class HomeErrorFlow extends ValueNotifierDelegateWidget<ErrorHomeState> {
+  HomeErrorFlow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ErrorPage(
+      config: ErrorConfig(),
+      actionHandler: () {},
+    );
+  }
+}
+
+class HomeLoadingFlow extends ValueNotifierDelegateWidget<LoadingHomeState> {
+  HomeLoadingFlow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }
