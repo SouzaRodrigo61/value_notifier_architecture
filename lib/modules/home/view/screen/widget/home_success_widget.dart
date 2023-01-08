@@ -10,11 +10,12 @@ class HomeSuccess extends ValueNotifierDelegateWidget<SuccessHomeState> {
   @override
   Widget build(BuildContext context) {
     final size = sized(context);
-    return Container(
+    return SizedBox(
       width: size.width,
       height: size.height,
-      color: Colors.blue,
-      child: Text(datasource.text),
+      child: SafeArea(
+        child: Text(datasource.text),
+      ),
     );
   }
 }
