@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 
 import 'valuenotifier_delegate.dart';
 
+//
+// TitleValueNotifierWidget
+//
+/// description: Value Notifier widget e um wrapper para separação em diversas
+/// camadas para separar o fluxo em Sucesso, error, loading e empty page.
+///
+/// Esse wrapper tambem trabalhar com o fluxo do delegate para devolver o valor
+/// do children para o parent.
+///
+/// Esse Delegate do widget e semelhante ao fluxo do que acontece no iOS
+/// utilizando o conceito do datasource.
+///
+
 class ValueNotifierWidget<T, Success, Error, Loading> extends StatelessWidget {
   const ValueNotifierWidget({
     Key? key,
