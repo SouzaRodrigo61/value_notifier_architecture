@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-// import 'package:connectivity_plus/connectivity_plus.dart';
-
 import '../core/layout/office_page.dart';
 import '../modules/home/view/screen/home_page.dart';
 

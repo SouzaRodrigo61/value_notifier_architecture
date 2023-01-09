@@ -1,2 +1,0 @@
-mixin HomeProvider {}
-mixin HomeService {}

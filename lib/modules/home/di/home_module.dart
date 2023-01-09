@@ -1,7 +1,7 @@
-import 'package:value_notifier_architecture/modules/home/domain/usecases/home_use_case.dart';
-
 import '../../../core/di/core.dart';
-import '../domain/contract/home_domain_contract.dart';
+import '../../../core/environment/env.dart';
+import '../contract/home_contract.dart';
+import '../domain/usecases/home_use_case.dart';
 import '../view/contract/home_view_contract.dart';
 import '../view/controller/store/home_store.dart';
 
@@ -15,11 +15,15 @@ class HomeModule {
       scopeName: scopeName,
       init: (getIt) {
         getIt.registerLazySingleton<HomeUseCases>(
-          () => HomeUseCasesImpl(),
+          () => HomeUseCasesImpl(
+            getIt<Envronment>(),
+          ),
         );
 
         getIt.registerLazySingleton<HomeStore>(
-          () => HomeStoreImpl(getIt()),
+          () => HomeStoreImpl(
+            getIt<HomeUseCases>(),
+          ),
         );
       },
     );

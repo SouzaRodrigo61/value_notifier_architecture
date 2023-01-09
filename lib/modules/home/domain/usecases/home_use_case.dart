@@ -1,13 +1,19 @@
 import 'package:result_dart/result_dart.dart';
 
-import '../contract/home_domain_contract.dart';
+import '../../../../core/environment/env.dart';
+import '../../infra/service/home_service.dart';
+import '../../contract/home_contract.dart';
 
-class HomeUseCasesImpl with HomeUseCases {
+class HomeUseCasesImpl extends HomeUseCases {
+  HomeUseCasesImpl(super.env);
+
   @override
   AsyncResult<String, String> fetchProduct() async {
-    await Future.delayed(const Duration(seconds: 1));
-    return const Failure(
-      "Working Clean Code with State pattern",
-    );
+    switch (env.envronment) {
+      case Env.live:
+        return HomeService.live();
+      default:
+        return HomeService.mockFailure();
+    }
   }
 }
