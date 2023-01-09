@@ -6,10 +6,11 @@ import 'app/app_widget.dart';
 import 'core/di/core.dart';
 
 void main() async {
+  print("[Mock Mode] - main_mock.dart");
   WidgetsFlutterBinding.ensureInitialized();
   CoreModule(
-    debug: false,
-    env: Envronment(Env.live),
+    debug: true,
+    env: Envronment(Env.mock),
   ).init();
 
   bool result = await InternetConnectionChecker().hasConnection;

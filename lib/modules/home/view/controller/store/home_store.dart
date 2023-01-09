@@ -2,7 +2,7 @@ import 'package:result_dart/result_dart.dart';
 
 import '../../../../../core/shared/notifier/wrapper_notifier.dart';
 
-import '../../../domain/contract/home_domain_contract.dart';
+import '../../../contract/home_contract.dart';
 import '../../contract/home_view_contract.dart';
 import '../state/home_state.dart';
 

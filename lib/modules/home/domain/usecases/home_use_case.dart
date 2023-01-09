@@ -13,7 +13,7 @@ class HomeUseCasesImpl extends HomeUseCases {
       case Env.live:
         return HomeService.live();
       default:
-        return HomeService.mockFailure();
+        return HomeService.mockSuccess();
     }
   }
 }

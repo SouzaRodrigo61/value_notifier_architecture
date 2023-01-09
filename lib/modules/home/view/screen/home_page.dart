@@ -53,7 +53,6 @@ class _MyHomePageState extends BaseState<MyHomePage> {
         success: HomeSuccess(),
         error: HomeError(),
         loading: HomeLoading(),
-        emptyState: HomeLoading(),
       ),
     );
   }

@@ -1,25 +1,31 @@
 {
-    // Use o IntelliSense para saber mais sobre os atributos possíveis.
-    // Focalizar para exibir as descrições dos atributos existentes.
-    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "value_notifier_architecture",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "value_notifier_architecture (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "value_notifier_architecture (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
-    ]
+  // Use o IntelliSense para saber mais sobre os atributos possíveis.
+  // Focalizar para exibir as descrições dos atributos existentes.
+  // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "value_notifier_architecture",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "value_notifier_architecture (developer mode)",
+      "request": "launch",
+      "type": "dart",
+      "args": ["-t", "lib/main_mock.dart"]
+    },
+    {
+      "name": "value_notifier_architecture (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "value_notifier_architecture (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
 }
