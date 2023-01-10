@@ -12,6 +12,7 @@
     "domain": "context",
     "state": "update",
     "store": "hook",
-    "notifier": "event"
+    "notifier": "event",
+    "rive": "animation"
   }
 }

@@ -3,6 +3,7 @@ import 'package:localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../core/layout/office_page.dart';
+import '../design/theme/theme.dart';
 import '../modules/home/view/screen/home_page.dart';
 
 class MyApp extends StatefulWidget {
@@ -50,9 +51,7 @@ class _MyAppState extends State<MyApp> {
         Locale('pt', 'BR'),
         Locale('en', 'US'),
       ],
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme(),
       home: widget.isoffline ? MyHomePage(widget.key) : const Offline(),
     );
   }
