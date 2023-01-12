@@ -47,6 +47,7 @@ dependencies:
   result_dart: ^1.0.3
   internet_connection_checker: ^1.0.0+1
   localization: ^2.1.0
+  flutter_keyboard_visibility: ^5.4.0
 
 dev_dependencies:
   mocktail: ^0.3.0
